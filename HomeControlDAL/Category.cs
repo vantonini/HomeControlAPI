@@ -1,8 +1,8 @@
 ﻿using System;
 
 namespace HomeControlDAL {
-    public class Categories : HomeControlEntitty {
-        public Categories() {
+    public class Category : HomeControlEntity {
+        public Category() {
             //Employees = new HashSet<Employees>();
         }
 

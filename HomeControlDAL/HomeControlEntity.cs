@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HomeControlDAL {
-    public class HomeControlEntitty {
+    public class HomeControlEntity {
 
         public int Id { get; set; }
         public DateTime DateModified { get; set; }
