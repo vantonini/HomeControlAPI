@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ViewModels;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
+using HomeControlDAL;
 
 namespace HomeControlAPI.Controllers 
     {
@@ -13,18 +14,20 @@ namespace HomeControlAPI.Controllers
     public class CategoryController : ControllerBase {
 
         private readonly ILogger _logger;
+        private readonly HomeControlContext _context;
 
 
         // constructor
-        public CategoryController(ILogger<CategoryController> logger) {
+        public CategoryController(ILogger<CategoryController> logger, HomeControlContext context) {
             _logger = logger;
+            _context = context;
         }
 
 
         [HttpGet]
         public IActionResult GetAll() {
             try {
-                CategoryViewModel viewmodel = new CategoryViewModel();
+                CategoryViewModel viewmodel = new CategoryViewModel(_context);
                 List<CategoryViewModel> allDepartments = viewmodel.GetAll();
                 return Ok(allDepartments);
             }

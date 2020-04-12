@@ -10,11 +10,14 @@ namespace ViewModels {
 
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public string Timer { get; set; }
+        
 
         // constructor
         public CategoryViewModel() {
             _model = new CategoryModel();
+        }
+        public CategoryViewModel(HomeControlContext context) {
+            _model = new CategoryModel(context);
         }
 
         // methods
@@ -26,7 +29,7 @@ namespace ViewModels {
                     CategoryViewModel deptVm = new CategoryViewModel();
                     deptVm.CategoryName = dept.CategoryName;
                     deptVm.Id = dept.Id;
-                    deptVm.Timer = Convert.ToBase64String(dept.Timer);
+                    //deptVm.Timer = Convert.ToBase64String(dept.Timer);
                     allVms.Add(deptVm);
                 } // end foreach
             }

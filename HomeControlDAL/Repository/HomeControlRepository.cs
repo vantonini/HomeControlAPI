@@ -34,7 +34,7 @@ namespace HomeControlDAL {
 
             try {
                 HomeControlEntity currentEntity = GetByExpression(ent => ent.Id == updatedEntity.Id).FirstOrDefault();
-                _db.Entry(currentEntity).OriginalValues["Timer"] = updatedEntity.Timer;
+                //_db.Entry(currentEntity).OriginalValues["Timer"] = updatedEntity.Timer;
                 _db.Entry(currentEntity).CurrentValues.SetValues(updatedEntity);
 
                 if (_db.SaveChanges() == 1)

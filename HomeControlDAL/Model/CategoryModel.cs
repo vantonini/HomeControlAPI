@@ -12,6 +12,9 @@ namespace HomeControlDAL {
         public CategoryModel() {
             repository = new HomeControlRepository<Category>();
         }
+        public CategoryModel(HomeControlContext context) {
+            repository = new HomeControlRepository<Category>(context);
+        }
 
 
         // methods
@@ -19,6 +22,7 @@ namespace HomeControlDAL {
             List<Category> allDepartments = new List<Category>();
 
             try {
+                
                 allDepartments = repository.GetAll();
 
             }
