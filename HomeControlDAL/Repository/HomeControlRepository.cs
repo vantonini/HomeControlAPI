@@ -6,12 +6,15 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
+
 namespace HomeControlDAL {
-    public class HomeControlRepository<T> : IRepository<T> where T : HomeControlEntity{
+    public class HomeControlRepository<T> : IRepository<T> where T : HomeControlEntity {
+
         private HomeControlContext _db = null;
         // constructor
         public HomeControlRepository(HomeControlContext context = null) {
             _db = context != null ? context : new HomeControlContext();
+            
         }
 
         // methods
@@ -55,5 +58,6 @@ namespace HomeControlDAL {
             _db.Set<T>().Remove(currentEntity);
             return _db.SaveChanges();
         } // end Delete
+
     }
 }

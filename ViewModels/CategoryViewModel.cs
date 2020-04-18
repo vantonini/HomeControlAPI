@@ -29,7 +29,6 @@ namespace ViewModels {
                     CategoryViewModel deptVm = new CategoryViewModel();
                     deptVm.CategoryName = dept.CategoryName;
                     deptVm.Id = dept.Id;
-                    //deptVm.Timer = Convert.ToBase64String(dept.Timer);
                     allVms.Add(deptVm);
                 } // end foreach
             }
