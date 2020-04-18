@@ -10,8 +10,8 @@ namespace HomeControlDAL {
 
         }
         public DateTime TransactionDate { get; set; }
-        public string TransactionType { get; set; }
-        public int? StoreID { get; set; }
+        public int? TransactionType { get; set; }
+        public int StoreID { get; set; }
         public int? CategoryID { get; set; }
         public double Value { get; set; }
 

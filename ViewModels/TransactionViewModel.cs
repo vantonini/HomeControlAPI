@@ -7,10 +7,11 @@ namespace ViewModels {
     public class TransactionViewModel {
 
         private TransactionModel _model;
+        private StoreModel _storeModel;
 
         public int Id { get; set; }
         public DateTime TransactionDate { get; set; }
-        public string TransactionType { get; set;  }
+        public int? TransactionType { get; set;  }
         public string StoreOriginalName { get; set; }
         public string StoreModifiedName { get; set; }
         public int? StoreID { get; set; }
@@ -21,25 +22,31 @@ namespace ViewModels {
         // constructor
         public TransactionViewModel() {
             _model = new TransactionModel();
+            _storeModel = new StoreModel();
         }
         public TransactionViewModel(HomeControlContext context) {
             _model = new TransactionModel(context);
+            _storeModel = new StoreModel(context);
         }
 
         // methods
         public List<TransactionViewModel> GetAll() {
-            List<TransactionViewModel> allVms = new List<TransactionViewModel>();
+            List<TransactionViewModel> allTVms = new List<TransactionViewModel>();
+            List<Store> allS = _storeModel.GetAll();
             try {
                 List<Transaction> allElements = _model.GetAll();
                 foreach (Transaction element in allElements) {
                     TransactionViewModel elementVM = new TransactionViewModel();
+                    Store store = allS.Find(el => el.Id == element.StoreID);
                     elementVM.Id = element.Id;
+                    elementVM.TransactionDate = element.TransactionDate;
                     elementVM.TransactionType = element.TransactionType;
                     elementVM.CategoryID = element.CategoryID;
-                    elementVM.StoreOriginalName = element.Store.StoreOriginalName;
-                    elementVM.StoreModifiedName = element.Store.StoreModifiedName;
-                    elementVM.Value= element.Value;                  
-                    allVms.Add(elementVM);
+                    elementVM.StoreID = store.Id;
+                    elementVM.StoreOriginalName = store.StoreOriginalName;
+                    elementVM.StoreModifiedName = store.StoreModifiedName;
+                    elementVM.Value= element.Value;
+                    allTVms.Add(elementVM);
                 } // end foreach
             }
             catch (Exception ex) {
@@ -48,7 +55,7 @@ namespace ViewModels {
                 throw ex;
             }
 
-            return allVms;
+            return allTVms;
         } // end GetAll
 
         public void Add() {

@@ -42,8 +42,18 @@ namespace HomeControlAPI.Controllers
         [HttpPost]
         public IActionResult Upload(List<TransactionViewModel> listVM) {
             try {
+                TransactionViewModel viewmodel = new TransactionViewModel(_context);
+                List<TransactionViewModel> allElements = viewmodel.GetAll();
+
+
                 foreach (TransactionViewModel vm in listVM) {
-                    vm.Add();
+                    TransactionViewModel selectedTVM = allElements.Find(element =>
+                        element.StoreOriginalName.Contains(vm.StoreOriginalName)
+                        && element.TransactionDate == vm.TransactionDate
+                        && element.Value == vm.Value);
+                    if (selectedTVM == null) {
+                            vm.Add();
+                    }
                 }
                 return Ok();    
             }

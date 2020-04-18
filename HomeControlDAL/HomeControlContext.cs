@@ -6,7 +6,7 @@ namespace HomeControlDAL {
       
 
         public HomeControlContext() : base() {
-
+            
         }
         public HomeControlContext(DbContextOptions<HomeControlContext> options)
             : base(options) {
@@ -37,8 +37,8 @@ namespace HomeControlDAL {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-                optionsBuilder.UseSqlServer("Data Source=MSI\\Testserver;Initial Catalog=HomeControl;Integrated Security=True");
-            
+            optionsBuilder.UseSqlServer("Data Source=MSI\\Testserver;Initial Catalog=HomeControl;Integrated Security=True");
+
         }
 
     }
